@@ -1,0 +1,87 @@
+[
+    {
+        "arguments": {
+            "hmmcopy.inputNormal": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/hmmcopy/normal_sorted.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "hmmcopy.inputTumor": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/hmmcopy/tumor_sorted.bam",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "hmmcopy.normalConvert.chromosomes": null,
+            "hmmcopy.normalConvert.jobMemory": null,
+            "hmmcopy.normalConvert.modules": null,
+            "hmmcopy.normalConvert.readCounter": null,
+            "hmmcopy.normalConvert.timeout": null,
+            "hmmcopy.normalConvert.window": null,
+            "hmmcopy.outputFileNamePrefix": "TESTRUN",
+            "hmmcopy.runHMMcopy.cgFile": "/.mounts/labs/gsi/testdata/hmmcopy/hmmcopy_data/gc_hg18_chr22.wig",
+            "hmmcopy.runHMMcopy.hmmcopyScript": null,
+            "hmmcopy.runHMMcopy.jobMemory": null,
+            "hmmcopy.runHMMcopy.mapFile": "/.mounts/labs/gsi/testdata/hmmcopy/hmmcopy_data/map_hg18_chr22.wig",
+            "hmmcopy.runHMMcopy.modules": "hmmcopy/1.28.1 hmmcopy-scripts/1.0 rstats-cairo/3.6",
+            "hmmcopy.runHMMcopy.rScript": null,
+            "hmmcopy.runHMMcopy.timeout": null,
+            "hmmcopy.tumorConvert.chromosomes": null,
+            "hmmcopy.tumorConvert.jobMemory": null,
+            "hmmcopy.tumorConvert.modules": null,
+            "hmmcopy.tumorConvert.readCounter": null,
+            "hmmcopy.tumorConvert.timeout": null,
+            "hmmcopy.tumorConvert.window": null
+        },
+        "description": "hmmcopy workflow test",
+        "engineArguments": {},
+        "id": "TEST_CHR22",
+        "metadata": {
+            "hmmcopy.resultTsvFile": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hmmcopy_TEST_CHR22_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "hmmcopy.resultiSegFile": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hmmcopy_TEST_CHR22_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "hmmcopy.zippedPlots": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hmmcopy_TEST_CHR22_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/hmmcopy/output_metrics/TEST_CHR22.metrics",
+                "type": "script"
+            }
+        ]
+    }
+]
