@@ -1,6 +1,8 @@
 # hmmcopy
 
-HMMcopy 2.0
+This Seqware workflow is a wrapper for HMMcopy which is a CNV analysis tool capable of making calls using paired Normal/Tumor data. The tool detects copy-number changes and allelic imbalances (including LOH) using deep-sequencing data.Corrects GC and mappability biases for readcounts (i.e. coverage) in non-overlapping windows of fixed length for single whole genome samples, yielding a rough estimate of copy number for furthur analysis. Designed for rapid correction of high coverage whole genome tumour and normal samples.
+
+![hmmcopy, how it works](docs/hmmcopy_wf.png)
 
 ## Overview
 
@@ -67,27 +69,27 @@ Output | Type | Description
 
 
 ## Commands
-This section lists command(s) run by hmmcopy workflow
+ This section lists command(s) run by hmmcopy workflow
  
  * Running hmmcopy
  
-HMMcopy workflow uses R package hmmcopy utilizing custom R scripts.
+ HMMcopy workflow uses R package hmmcopy utilizing custom R scripts.
  
-Pre-processing:
+ Pre-processing:
  
-```
-  READ_COUNTER -b INPUT_FILE
-  READ_COUNTER -w WINDOW (Optional) -c CHROMOSOMES (Optional) INPUT_FILE > INPUT_FILE_BASENAME_reads.wig
+ ```
+   READ_COUNTER -b INPUT_FILE
+   READ_COUNTER -w WINDOW (Optional) -c CHROMOSOMES (Optional) INPUT_FILE > INPUT_FILE_BASENAME_reads.wig
  
-```
-Running the analysis:
+ ```
+ Running the analysis:
  
-```
-  Rscript HMMCOPY_SCRIPT NORMAL_WIG TUMOR_WIG CG_FILE MAP_FILE OUTPUT_PREFIX
-  zip -q OUTPUT_PREFIX_images.zip *.png
+ ```
+   Rscript HMMCOPY_SCRIPT NORMAL_WIG TUMOR_WIG CG_FILE MAP_FILE OUTPUT_PREFIX
+   zip -q OUTPUT_PREFIX_images.zip *.png
  
-```
-## Support
+ ```
+ ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
