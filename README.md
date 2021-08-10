@@ -1,6 +1,8 @@
 # hmmcopy
 
-HMMcopy 2.0
+This Seqware workflow is a wrapper for HMMcopy which is a CNV analysis tool capable of making calls using paired Normal/Tumor data. The tool detects copy-number changes and allelic imbalances (including LOH) using deep-sequencing data.Corrects GC and mappability biases for readcounts (i.e. coverage) in non-overlapping windows of fixed length for single whole genome samples, yielding a rough estimate of copy number for furthur analysis. Designed for rapid correction of high coverage whole genome tumour and normal samples.
+
+![hmmcopy, how it works](docs/hmmcopy_wf.png)
 
 ## Overview
 
@@ -10,11 +12,6 @@ HMMcopy 2.0
 * [hmmcopy 1.28.1](https://bioconductor.org/packages/HMMcopy/)
 * [rstats-cairo 3.6](http://cran.utstat.utoronto.ca/src/base/R-3/R-3.6.1.tar.gz)
 
-This Seqware workflow is a wrapper for [HMMcopy](https://bioconductor.org/packages/release/bioc/html/HMMcopy.html) which is a CNV analysis tool capable of making calls using paired Normal/Tumor data. The tool detects copy-number changes and allelic imbalances (including LOH) using deep-sequencing data.
-
-Corrects GC and mappability biases for readcounts (i.e. coverage) in non-overlapping windows of fixed length for single whole genome samples, yielding a rough estimate of copy number for furthur analysis. Designed for rapid correction of high coverage whole genome tumour and normal samples.
-
-![hmmcopy, how it works](docs/hmmcopy_wf.png)
 
 ## Usage
 
@@ -30,6 +27,7 @@ Parameter|Value|Description
 ---|---|---
 `inputTumor`|File|input .bam file for tumor sample
 `inputNormal`|File|input .bam file for normal sample
+`runHMMcopy.modules`|String|list of data/software modules needed for the task
 `runHMMcopy.cgFile`|String|Path to CG content file
 `runHMMcopy.mapFile`|String|Path to mappability file
 
@@ -38,6 +36,7 @@ Parameter|Value|Description
 Parameter|Value|Default|Description
 ---|---|---|---
 `outputFileNamePrefix`|String|""|Output file(s) prefix
+
 
 #### Optional task parameters:
 Parameter|Value|Default|Description
@@ -54,7 +53,6 @@ Parameter|Value|Default|Description
 `tumorConvert.window`|Int?|None|Resolution of a bin, in bases, default is 1000
 `tumorConvert.jobMemory`|Int|8|memory for this job, in Gb
 `tumorConvert.timeout`|Int|20|Timeout in hours, needed to override imposed limits
-`runHMMcopy.modules`|String|"hg19-hmmcopy/1.0 hmmcopy/1.28.1 hmmcopy-scripts/1.0 rstats-cairo/3.6"|list of data/software modules needed for the task
 `runHMMcopy.rScript`|String|"$RSTATS_CAIRO_ROOT/bin/Rscript"|Path to Rscript
 `runHMMcopy.hmmcopyScript`|String|"$HMMCOPY_SCRIPTS_ROOT/run_HMMcopy.r"|Path to .R script that runs HMMcopy pipeline
 `runHMMcopy.jobMemory`|Int|8|memory in GB for this job
@@ -70,7 +68,28 @@ Output | Type | Description
 `zippedPlots`|File|zipped plots in .png format
 
 
-## Support
+## Commands
+ This section lists command(s) run by hmmcopy workflow
+ 
+ * Running hmmcopy
+ 
+ HMMcopy workflow uses R package hmmcopy utilizing custom R scripts.
+ 
+ Pre-processing:
+ 
+ ```
+   READ_COUNTER -b INPUT_FILE
+   READ_COUNTER -w WINDOW (Optional) -c CHROMOSOMES (Optional) INPUT_FILE > INPUT_FILE_BASENAME_reads.wig
+ 
+ ```
+ Running the analysis:
+ 
+ ```
+   Rscript HMMCOPY_SCRIPT NORMAL_WIG TUMOR_WIG CG_FILE MAP_FILE OUTPUT_PREFIX
+   zip -q OUTPUT_PREFIX_images.zip *.png
+ 
+ ```
+ ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 

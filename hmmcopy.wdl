@@ -17,7 +17,7 @@ call runHMMcopy { input: tumorWig = tumorConvert.coverageWig, normalWig = normal
 meta {
   author: "Peter Ruzanov"
   email: "peter.ruzanov@oicr.on.ca"
-  description: "HMMcopy 2.0"
+  description: "This Seqware workflow is a wrapper for HMMcopy which is a CNV analysis tool capable of making calls using paired Normal/Tumor data. The tool detects copy-number changes and allelic imbalances (including LOH) using deep-sequencing data.Corrects GC and mappability biases for readcounts (i.e. coverage) in non-overlapping windows of fixed length for single whole genome samples, yielding a rough estimate of copy number for furthur analysis. Designed for rapid correction of high coverage whole genome tumour and normal samples.\n\n![hmmcopy, how it works](docs/hmmcopy_wf.png)"
   dependencies: [
       {
         name: "hmmcopy-utils/0.1.1",

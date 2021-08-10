@@ -1,0 +1,21 @@
+## Commands
+This section lists command(s) run by hmmcopy workflow
+
+* Running hmmcopy
+
+HMMcopy workflow uses R package hmmcopy utilizing custom R scripts.
+
+Pre-processing:
+
+```
+  READ_COUNTER -b INPUT_FILE
+  READ_COUNTER -w WINDOW (Optional) -c CHROMOSOMES (Optional) INPUT_FILE > INPUT_FILE_BASENAME_reads.wig
+
+```
+Running the analysis:
+
+```
+  Rscript HMMCOPY_SCRIPT NORMAL_WIG TUMOR_WIG CG_FILE MAP_FILE OUTPUT_PREFIX
+  zip -q OUTPUT_PREFIX_images.zip *.png
+
+```
