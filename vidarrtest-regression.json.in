@@ -47,7 +47,10 @@
             "hmmcopy.tumorConvert.window": null
         },
         "description": "hmmcopy workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
         "id": "TEST_CHR22",
         "metadata": {
             "hmmcopy.resultTsvFile": {
@@ -77,8 +80,8 @@
         },
         "validators": [
             {
-                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
-                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
                 "output_metrics": "/.mounts/labs/gsi/testdata/hmmcopy/output_metrics/TEST_CHR22.metrics",
                 "type": "script"
             }
