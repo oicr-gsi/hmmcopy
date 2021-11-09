@@ -14,7 +14,7 @@ echo ".seg files:"
 for f in *.seg;do awk '{printf "%s %s %i %i %.3f\n", $1, $2, $3, $4, $5}' $f | md5sum;done | sort -V
 
 echo ".tsv files:"
-find . -name "*.tsv" | xargs md5sum | sort -V
+for f in *.tsv;do awk '{printf "%s %s %i %i %i %.3f\n", $1, $2, $3, $4, $5, $6}' $f | md5sum;done | sort -V
 
 echo ".png files:"
 find . -name "*.png" | grep -v bias | xargs md5sum | sort -V
