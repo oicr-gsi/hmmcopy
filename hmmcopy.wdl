@@ -35,7 +35,8 @@ meta {
     output_meta: {
       resultiSegFile: ".seg file produced with HMMcopy",
       resultTsvFile: ".tsv file with all calls produced by HMMcopy",
-      zippedPlots: "zipped plots in .png format"
+      cgBiasImage: "Plot showing the results of CG bias test",
+      segImage: "Plot shows the segmentation data"
     }
 }
 
@@ -48,7 +49,9 @@ parameter_meta {
 output {
   File resultiSegFile = runHMMcopy.segFile
   File resultTsvFile  = runHMMcopy.tsvFile
-  File zippedPlots    = runHMMcopy.zippedPlots
+  File cgBiasImage    = runHMMcopy.cgBiasImage
+  File segImage       = runHMMcopy.segImage
+
 }
 
 }
@@ -139,7 +142,8 @@ runtime {
 output {
   File segFile = "~{outputPrefix}.seg"
   File tsvFile = "~{outputPrefix}.tsv"
-  File zippedPlots = "~{outputPrefix}_images.zip"
+  File cgBiasImage = "~{outputPrefix}.bias_plot.png"
+  File segImage = "~{outputPrefix}.s_plot.png"
 }
 }
 

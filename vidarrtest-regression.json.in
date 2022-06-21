@@ -36,7 +36,7 @@
             "hmmcopy.runHMMcopy.hmmcopyScript": null,
             "hmmcopy.runHMMcopy.jobMemory": null,
             "hmmcopy.runHMMcopy.mapFile": "/.mounts/labs/gsi/testdata/hmmcopy/hmmcopy_data/map_hg18_chr22.wig",
-            "hmmcopy.runHMMcopy.modules": "hmmcopy/1.28.1 hmmcopy-scripts/1.0 rstats-cairo/3.6",
+            "hmmcopy.runHMMcopy.modules": "hmmcopy/1.28.1 hmmcopy-scripts/1.1 rstats-cairo/3.6",
             "hmmcopy.runHMMcopy.rScript": null,
             "hmmcopy.runHMMcopy.timeout": null,
             "hmmcopy.tumorConvert.chromosomes": null,
@@ -69,7 +69,15 @@
                 ],
                 "type": "ALL"
             },
-            "hmmcopy.zippedPlots": {
+            "hmmcopy.cgBiasImage": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hmmcopy_TEST_CHR22_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "hmmcopy.segImage": {
                 "contents": [
                     {
                         "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hmmcopy_TEST_CHR22_@JENKINSID@"
