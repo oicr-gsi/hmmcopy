@@ -65,8 +65,8 @@ Output | Type | Description
 ---|---|---
 `resultiSegFile`|File|.seg file produced with HMMcopy
 `resultTsvFile`|File|.tsv file with all calls produced by HMMcopy
-`zippedPlots`|File|zipped plots in .png format
-
+`segImage`|File|image file (segmentation plot) in .png format
+`cgBiasImage`|File|image file with CG bias results in .png format
 
 ## Commands
  This section lists command(s) run by hmmcopy workflow

@@ -1,3 +1,5 @@
+## 2.0.2 - 2022-06-21
+- [GP-2981](https://jira.oicr.on.ca/browse/GP-2981) moving to research, revised how segmentation image is produced
 ## Unreleased - 2021-11-10
 - [GP-2879](https://jira.oicr.on.ca/browse/GP-2879) make calculate script more robust
 ## 2.0.1 - 2021-06-02
