@@ -10,7 +10,7 @@ This Seqware workflow is a wrapper for HMMcopy which is a CNV analysis tool capa
 
 * [hmmcopy-utils 0.1.1](https://bioconductor.org/packages/HMMcopy/)
 * [hmmcopy 1.28.1](https://bioconductor.org/packages/HMMcopy/)
-* [rstats-cairo 3.6](http://cran.utstat.utoronto.ca/src/base/R-3/R-3.6.1.tar.gz)
+* [rstats 4.0](http://cran.utstat.utoronto.ca/src/base/R-3/R-4.0.tar.gz)
 
 
 ## Usage
@@ -27,9 +27,7 @@ Parameter|Value|Description
 ---|---|---
 `inputTumor`|File|input .bam file for tumor sample
 `inputNormal`|File|input .bam file for normal sample
-`runHMMcopy.modules`|String|list of data/software modules needed for the task
-`runHMMcopy.cgFile`|String|Path to CG content file
-`runHMMcopy.mapFile`|String|Path to mappability file
+`reference`|String|reference assembly id
 
 
 #### Optional workflow parameters:
@@ -53,7 +51,7 @@ Parameter|Value|Default|Description
 `tumorConvert.window`|Int?|None|Resolution of a bin, in bases, default is 1000
 `tumorConvert.jobMemory`|Int|8|memory for this job, in Gb
 `tumorConvert.timeout`|Int|20|Timeout in hours, needed to override imposed limits
-`runHMMcopy.rScript`|String|"$RSTATS_CAIRO_ROOT/bin/Rscript"|Path to Rscript
+`runHMMcopy.rScript`|String|"$RSTATS_ROOT/bin/Rscript"|Path to Rscript
 `runHMMcopy.hmmcopyScript`|String|"$HMMCOPY_SCRIPTS_ROOT/run_HMMcopy.r"|Path to .R script that runs HMMcopy pipeline
 `runHMMcopy.jobMemory`|Int|8|memory in GB for this job
 `runHMMcopy.timeout`|Int|20|Timeout in hours, needed to override imposed limits
@@ -65,8 +63,9 @@ Output | Type | Description
 ---|---|---
 `resultiSegFile`|File|.seg file produced with HMMcopy
 `resultTsvFile`|File|.tsv file with all calls produced by HMMcopy
-`segImage`|File|image file (segmentation plot) in .png format
-`cgBiasImage`|File|image file with CG bias results in .png format
+`cgBiasImage`|File|Plot showing the results of CG bias test
+`segImage`|File|Plot shows the segmentation data
+
 
 ## Commands
  This section lists command(s) run by hmmcopy workflow
