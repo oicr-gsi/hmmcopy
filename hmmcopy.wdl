@@ -38,7 +38,7 @@ call runHMMcopy { input: tumorWig = tumorConvert.coverageWig,
                          normalWig = normalConvert.coverageWig,
                          cgFile = resources[reference].cgFile,
                          mapFile = resources[reference].mapFile,
-                         modules = "hmmcopy/1.28.1 hmmcopy-scripts/1.1 rstats/4.0 {resources[reference].resourceModule}",
+                         modules = "hmmcopy/1.28.1 hmmcopy-scripts/1.1 rstats/4.0 ~{resources[reference].resourceModule}",
                          outputPrefix = sampleID }
 
 meta {
