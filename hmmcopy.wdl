@@ -1,18 +1,45 @@
 version 1.0
 
+struct hmmcopyResources {
+  String resourceModule
+  String cgFile
+  String mapFile
+}
+
 workflow hmmcopy {
 input {
   File inputTumor
   File inputNormal
+  String reference
   String outputFileNamePrefix = ""
 }
 
 String sampleID = if outputFileNamePrefix=="" then basename(inputTumor, ".bam") else outputFileNamePrefix
 
+Map [String,hmmcopyResources] resources = {
+  "hg18": {"resourceModule": "hg19-hmmcopy/1.0",
+           "cgFile": "/.mounts/labs/gsi/testdata/hmmcopy/hmmcopy_data/gc_hg18_chr22.wig",
+           "mapFile":"/.mounts/labs/gsi/testdata/hmmcopy/hmmcopy_data/map_hg18_chr22.wig"
+  },
+  "hg19": {"resourceModule": "hg19-hmmcopy/1.0",
+           "cgFile": "$HG19_HMMCOPY_ROOT/gc_hg19_10kb.wig",
+           "mapFile":"$HG19_HMMCOPY_ROOT/map_hg19_10kb.wig"
+  },
+  "hg38": {"resourceModule": "hg38-hmmcopy/1.0",
+           "cgFile": "$HG38_HMMCOPY_ROOT/gc_hg38_10kb.wig",
+           "mapFile":"$HG38_HMMCOPY_ROOT/map_hg38_10kb.wig"
+  }
+}
+
 call convertHMMcopy as normalConvert{ input: inputFile = inputNormal }
 call convertHMMcopy as tumorConvert{ input: inputFile = inputTumor }
 
-call runHMMcopy { input: tumorWig = tumorConvert.coverageWig, normalWig = normalConvert.coverageWig, outputPrefix = sampleID }
+call runHMMcopy { input: tumorWig = tumorConvert.coverageWig,
+                         normalWig = normalConvert.coverageWig,
+                         cgFile = resources[reference].cgFile,
+                         mapFile = resources[reference].mapFile,
+                         modules = "hmmcopy/1.28.1 hmmcopy-scripts/1.1 ~{resources[reference].resourceModule} rstats/3.6",
+                         outputPrefix = sampleID }
 
 meta {
   author: "Peter Ruzanov"
@@ -28,7 +55,7 @@ meta {
         url: "https://bioconductor.org/packages/HMMcopy/"
       },
       {
-        name: "rstats-cairo/3.6",
+        name: "rstats/3.6",
         url: "http://cran.utstat.utoronto.ca/src/base/R-3/R-3.6.1.tar.gz"
       }
     ]
@@ -43,6 +70,7 @@ meta {
 parameter_meta {
   inputTumor: "input .bam file for tumor sample"
   inputNormal: "input .bam file for normal sample"
+  reference: "reference assembly id"
   outputFileNamePrefix: "Output file(s) prefix"
 }
 
@@ -105,7 +133,7 @@ input {
   File tumorWig
   File normalWig
   String modules
-  String rScript  = "$RSTATS_CAIRO_ROOT/bin/Rscript"
+  String rScript  = "$RSTATS_ROOT/bin/Rscript"
   String hmmcopyScript = "$HMMCOPY_SCRIPTS_ROOT/run_HMMcopy.r"
   String outputPrefix
   String cgFile
