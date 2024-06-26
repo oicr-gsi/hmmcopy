@@ -59,36 +59,37 @@ Parameter|Value|Default|Description
 
 ### Outputs
 
-Output | Type | Description
----|---|---
-`resultiSegFile`|File|.seg file produced with HMMcopy
-`resultTsvFile`|File|.tsv file with all calls produced by HMMcopy
-`cgBiasImage`|File|Plot showing the results of CG bias test
-`segImage`|File|Plot shows the segmentation data
+Output | Type | Description | Labels
+---|---|---|---
+`resultiSegFile`|File|.seg file produced with HMMcopy|vidarr_label: resultiSegFile
+`resultTsvFile`|File|.tsv file with all calls produced by HMMcopy|vidarr_label: resultTsvFile
+`cgBiasImage`|File|Plot showing the results of CG bias test|vidarr_label: cgBiasImage
+`segImage`|File|Plot shows the segmentation data|vidarr_label: segImage
 
 
 ## Commands
- This section lists command(s) run by hmmcopy workflow
+
+This section lists command(s) run by hmmcopy workflow
  
- * Running hmmcopy
+* Running hmmcopy
  
- HMMcopy workflow uses R package hmmcopy utilizing custom R scripts.
+HMMcopy workflow uses R package hmmcopy utilizing custom R scripts.
  
- Pre-processing:
+### Pre-processing:
  
- ```
+```
    READ_COUNTER -b INPUT_FILE
    READ_COUNTER -w WINDOW (Optional) -c CHROMOSOMES (Optional) INPUT_FILE > INPUT_FILE_BASENAME_reads.wig
  
- ```
- Running the analysis:
+```
+### Running the analysis:
  
- ```
+```
    Rscript HMMCOPY_SCRIPT NORMAL_WIG TUMOR_WIG CG_FILE MAP_FILE OUTPUT_PREFIX
    zip -q OUTPUT_PREFIX_images.zip *.png
  
- ```
- ## Support
+```
+## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 

@@ -1,3 +1,5 @@
+## 2.2.0 - 2024-06-25
+[GRD-797](https://jira.oicr.on.ca/browse/GRD-797) - add vidarr labels to outputs (changes to medata only)
 ## 2.1.0 - 2023-06-29
 - [GRD-647](https://jira.oicr.on.ca/browse/GRD-647) Moving assembly-specific choices into wdl
 ## 2.0.2 - 2022-06-21

@@ -60,11 +60,23 @@ meta {
       }
     ]
     output_meta: {
-      resultiSegFile: ".seg file produced with HMMcopy",
-      resultTsvFile: ".tsv file with all calls produced by HMMcopy",
-      cgBiasImage: "Plot showing the results of CG bias test",
-      segImage: "Plot shows the segmentation data"
+    resultiSegFile: {
+        description: ".seg file produced with HMMcopy",
+        vidarr_label: "resultiSegFile"
+    },
+    resultTsvFile: {
+        description: ".tsv file with all calls produced by HMMcopy",
+        vidarr_label: "resultTsvFile"
+    },
+    cgBiasImage: {
+        description: "Plot showing the results of CG bias test",
+        vidarr_label: "cgBiasImage"
+    },
+    segImage: {
+        description: "Plot shows the segmentation data",
+        vidarr_label: "segImage"
     }
+}
 }
 
 parameter_meta {
