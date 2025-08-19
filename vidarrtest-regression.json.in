@@ -3,7 +3,7 @@
         "arguments": {
             "hmmcopy.inputNormal": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/hmmcopy/normal_sorted.bam",
+                    "configuration": "/.mounts/labs/gsi/testdata/hmmcopy/test_inputs/Test02.bam",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -15,7 +15,7 @@
             },
             "hmmcopy.inputTumor": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/hmmcopy/tumor_sorted.bam",
+                    "configuration": "/.mounts/labs/gsi/testdata/hmmcopy/test_inputs/Test01.bam",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -91,7 +91,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/hmmcopy/output_metrics/TEST_CHR22.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/hmmcopy/output_metrics/workflow_test_01.metrics",
                 "type": "script"
             }
         ]
